@@ -1,3 +1,4 @@
+/*global twttr */
 import React from "react/addons";
 import Base from "./base";
 import Radium from "radium";
@@ -5,21 +6,26 @@ import Radium from "radium";
 @Radium
 class Tweet extends Base {
   componentDidMount() {
-    if (!this.initialized) {
-      this.initialized = true;
+    if (!this.state.initialized) {
+      console.log("not initialized");
+      /*
       const js = document.createElement("script");
       js.id = "twitter-wjs";
       js.src = "//platform.twitter.com/widgets.js";
       this.link.parentNode.appendChild(js);
       twttr.widgets.createTweet(
-        '20',
-        document.getElementById(this.refs.getDOMNode),
+        "20",
+        document.getElementById(this.refs.findDOMNode().id),
         {
           theme: "dark"
         }
-);
+      );
+      */
+      this.state.initialized = true;
+
     } else {
-      this.link = this.refs.getDOMNode;
+      console.log("already initialized");
+      // this.link = this.refs.findDOMNode();
     }
   }
   render() {
@@ -42,16 +48,7 @@ class Tweet extends Base {
 
 Tweet.propTypes = {
   tweetID: React.PropTypes.number,
-  width: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
-  height: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
-  ]),
   display: React.PropTypes.string,
-  src: React.PropTypes.string,
   style: React.PropTypes.object
 };
 

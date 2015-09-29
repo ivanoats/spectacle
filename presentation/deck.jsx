@@ -2,7 +2,7 @@ import React from "react/addons";
 
 import {
   Appear, BlockQuote, Cite, CodePane, Deck, Fill,
-  Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text
+  Heading, Image, Layout, Link, ListItem, List, Quote, Slide, Text, Tweet
 } from "../src/spectacle";
 
 import preloader from "../src/utils/preloader";
@@ -109,6 +109,10 @@ export default class extends React.Component {
             Your presentations are interactive
           </Heading>
           <Interactive/>
+        </Slide>
+        <Slide>
+          <Heading>Embed Tweets</Heading>
+          <Tweet tweetID="647446711221157889" />
         </Slide>
         <Slide transition={["spin", "slide"]} bgColor="tertiary">
           <Heading size={1} caps fit lineHeight={1.5} textColor="primary">
