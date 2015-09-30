@@ -6,27 +6,18 @@ import Radium from "radium";
 @Radium
 class Tweet extends Base {
   componentDidMount() {
-    if (!this.state.initialized) {
-      console.log("not initialized");
-      /*
-      const js = document.createElement("script");
-      js.id = "twitter-wjs";
-      js.src = "//platform.twitter.com/widgets.js";
-      this.link.parentNode.appendChild(js);
-      twttr.widgets.createTweet(
-        "20",
-        document.getElementById(this.refs.findDOMNode().id),
-        {
-          theme: "dark"
-        }
-      );
-      */
-      this.state.initialized = true;
+    console.log("twitter code not added yet");
 
-    } else {
-      console.log("already initialized");
-      // this.link = this.refs.findDOMNode();
-    }
+    const js = document.createElement("script");
+    js.id = "twitter-wjs";
+    js.src = "//platform.twitter.com/widgets.js";
+
+    console.log(js);
+
+    React.findDOMNode(this).parentNode.appendChild(js);
+
+    console.log(twttr);
+    console.log("twitter code added")
   }
   render() {
     const styles = {
@@ -35,11 +26,12 @@ class Tweet extends Base {
       display: this.props.display || ""
     };
     return (
-      <div style={[
-        this.context.styles.components.image,
-        this.getStyles(),
-        styles,
-        this.props.style]}
+      <div
+        style={[
+          this.context.styles.components.tweet,
+          this.getStyles(),
+          styles,
+          this.props.style]}
         className="twitter-embedded-tweet">
       </div>
     );
@@ -47,6 +39,14 @@ class Tweet extends Base {
 }
 
 Tweet.propTypes = {
+  width: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
+  height: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]),
   tweetID: React.PropTypes.number,
   display: React.PropTypes.string,
   style: React.PropTypes.object

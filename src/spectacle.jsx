@@ -16,6 +16,7 @@ import Quote from "./quote";
 import S from "./s";
 import Slide from "./slide";
 import Text from "./text";
+import Tweet from "./tweet";
 
 export {
   Appear,
@@ -35,5 +36,6 @@ export {
   Quote,
   S,
   Slide,
-  Text
+  Text,
+  Tweet
 };
