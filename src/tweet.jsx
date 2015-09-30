@@ -12,15 +12,17 @@ class Tweet extends Base {
     js.setAttribute("type", "text/javascript");
     React.findDOMNode(this).parentNode.appendChild(js);
   }
-  componentDidUpdate() {
-    console.log(window.twttr);
-    window.twttr.widgets.createTweet(
-      this.props.tweetID,
-      React.findDOMNode(this),
-      {
-        theme: "dark"
-      }
-    );
+  createTweet() {
+    window.requestAnimationFrame(() => {
+      window.twttr.widgets.createTweet(
+        this.props.tweetID,
+        React.findDOMNode(this),
+        {
+          theme: "dark"
+        }
+      );
+    });
+
   }
   render() {
     const styles = {
@@ -28,6 +30,7 @@ class Tweet extends Base {
       height: this.props.height || "",
       display: this.props.display || ""
     };
+    this.createTweet();
     return (
       <div
         style={[
