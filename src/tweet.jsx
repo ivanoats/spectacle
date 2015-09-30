@@ -13,8 +13,7 @@ class Tweet extends Base {
     React.findDOMNode(this).parentNode.appendChild(js);
   }
   componentDidUpdate() {
-    console.log(this.props.tweetID);
-    console.log(React.findDOMNode(this));
+    console.log(window.twttr);
     window.twttr.widgets.createTweet(
       this.props.tweetID,
       React.findDOMNode(this),
