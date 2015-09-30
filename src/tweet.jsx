@@ -11,6 +11,7 @@ class Tweet extends Base {
     const js = document.createElement("script");
     js.id = "twitter-wjs";
     js.src = "//platform.twitter.com/widgets.js";
+    js.setAttribute('type', 'text/javascript');
 
     console.log(js);
 
