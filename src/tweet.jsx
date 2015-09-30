@@ -1,4 +1,4 @@
-/*global twttr */
+/*global window document */
 import React from "react/addons";
 import Base from "./base";
 import Radium from "radium";
@@ -6,19 +6,22 @@ import Radium from "radium";
 @Radium
 class Tweet extends Base {
   componentDidMount() {
-    console.log("twitter code not added yet");
-
     const js = document.createElement("script");
     js.id = "twitter-wjs";
     js.src = "//platform.twitter.com/widgets.js";
-    js.setAttribute('type', 'text/javascript');
-
-    console.log(js);
-
+    js.setAttribute("type", "text/javascript");
     React.findDOMNode(this).parentNode.appendChild(js);
-
-    console.log(twttr);
-    console.log("twitter code added")
+  }
+  componentDidUpdate() {
+    console.log(this.props.tweetID);
+    console.log(React.findDOMNode(this));
+    window.twttr.widgets.createTweet(
+      this.props.tweetID,
+      React.findDOMNode(this),
+      {
+        theme: "dark"
+      }
+    );
   }
   render() {
     const styles = {
@@ -33,7 +36,8 @@ class Tweet extends Base {
           this.getStyles(),
           styles,
           this.props.style]}
-        className="twitter-embedded-tweet">
+        className="twitter-embedded-tweet"
+        ref="tweet">
       </div>
     );
   }
