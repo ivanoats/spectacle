@@ -12,25 +12,31 @@ class Tweet extends Base {
     js.setAttribute("type", "text/javascript");
     React.findDOMNode(this).parentNode.appendChild(js);
   }
+  componentDidUpdate() {
+    this.createTweet();
+  }
   createTweet() {
-    window.requestAnimationFrame(() => {
-      window.twttr.widgets.createTweet(
-        this.props.tweetID,
-        React.findDOMNode(this),
-        {
-          theme: "dark"
-        }
-      );
-    });
-
+    if (this.state.tweetEmbedded) {
+      return;
+    } else {
+      window.setTimeout(() => {
+        window.twttr.widgets.createTweet(
+          this.props.tweetID,
+          React.findDOMNode(this),
+          {
+            theme: "light"
+          }
+        );
+      }, 850);
+      this.setState({tweetEmbedded: true});
+    }
   }
   render() {
     const styles = {
-      width: this.props.width || "",
-      height: this.props.height || "",
+      width: this.props.width || "auto",
+      height: this.props.height || "auto",
       display: this.props.display || ""
     };
-    this.createTweet();
     return (
       <div
         style={[
@@ -38,7 +44,7 @@ class Tweet extends Base {
           this.getStyles(),
           styles,
           this.props.style]}
-        className="twitter-embedded-tweet"
+        className="twitter-embedded-tweet tw-embed-center"
         ref="tweet">
       </div>
     );
